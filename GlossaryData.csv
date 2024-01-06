@@ -1,0 +1,32 @@
+term,definition
+blockchain,A digital ledger in which transactions made in bitcoin or another cryptocurrency are recorded chronologically and publicly.
+cryptocurrency,"A digital currency in which encryption techniques are used to regulate the generation of units of currency and verify the transfer of funds, operating independently of a central bank."
+smart contract,A self-executing contract with the terms of the agreement between buyer and seller being directly written into lines of code.
+decentralization,The transfer of control of an activity or organization to several local offices or authorities rather than one single one.
+hashing,"The process of converting an input of any length into a fixed size string of text, using a mathematical function."
+ledger,"In the context of blockchain, a ledger is a digital record of transactions that is duplicated and distributed across the entire network of computer systems on the blockchain."
+token,"Tokens are a type of privately issued cryptocurrency that are typically used to fundraise for crowd sales, but can also be used as a substitute for other things."
+proof of work,"A system that ties mining capability to computational power. Blocks must be hashed, which is in itself an easy computational process, but an additional variable is added to the hashing process to make it more difficult."
+proof of stake,"A type of consensus mechanism used by blockchain networks to achieve distributed consensus that requires users to show ownership of a certain amount of cryptocurrency (their ""stake"") to be able to participate in the validation of transactions."
+mining,The process by which new cryptocurrency coins are made available and the log of transactions between users is maintained.
+digital signature,A mathematical scheme for verifying the authenticity of digital messages or documents.
+public key,A cryptographic key that can be obtained and used by anyone to encrypt messages intended for a particular recipient.
+private key,A secret key that is used in combination with a public key to encrypt and decrypt data.
+consensus mechanism,The process used to achieve agreement on a single data value among distributed processes or systems.
+peer-to-peer network,A decentralized communications model in which each party has the same capabilities and either party can initiate a communication session.
+cold storage,"The storage of cryptocurrencies in wallets that are not connected to the internet, thereby protecting them from unauthorized access, cyber hacks, and other vulnerabilities."
+cryptographic hash function,A function that converts an input (or 'message') into a fixed-size string of bytes. The output is typically a 'digest' that is unique to each unique input.
+double spending,"A potential problem unique to digital currencies, where the same digital token can be spent more than once."
+altcoin,"Any digital cryptocurrency similar to Bitcoin, but which makes some minor changes to the protocol or underlying algorithm."
+bitcoin,The first decentralized digital currency that works without a central bank or single administrator.
+scalability,"In the context of blockchain, scalability refers to the ability of a system to handle a growing amount of work or its potential to be enlarged to accommodate that growth."
+forking,The process of creating a new version of a blockchain that diverges from the original version.
+gas,"In the Ethereum network, gas refers to the pricing value required to conduct a transaction or execute a contract on the Ethereum blockchain."
+crypto wallets,Digital wallets that allow users to store and manage their digital currencies.
+atomic swaps,A smart contract technology that enables the exchange of one cryptocurrency for another without using centralized intermediaries.
+layer 2 solutions,Secondary frameworks or protocols that are built on top of an existing blockchain system to improve its scalability and efficiency.
+DeFi,"Short for Decentralized Finance, an umbrella term for a variety of financial applications in cryptocurrency or blockchain geared toward disrupting financial intermediaries."
+oracles,"In the context of blockchains, oracles are third-party services that provide smart contracts with external information."
+validators,Participants in the blockchain who are responsible for verifying and validating transactions to add to the blockchain.
+sharding,"A type of database partitioning that separates very large databases into smaller, faster, more easily managed parts called data shards."
+cross-chain interoperability,The ability for different blockchain networks to communicate and interact with each other without intermediaries.

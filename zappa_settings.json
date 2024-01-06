@@ -1,0 +1,13 @@
+{
+    "dev": {
+        "app_function": "crypto_chatbot.app",
+        "aws_region": "us-east-1",
+        "profile_name": "default",
+        "project_name": "webtest",
+        "runtime": "python3.8",
+        "s3_bucket": "zappa-h7pvyoua3",
+        "environment_variables": {
+            "OPENAI_API_KEY": "-actual-api-key"
+        }
+    }
+}

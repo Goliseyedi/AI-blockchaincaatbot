@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto and Blockchain Query and Glossary Assistant</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/background.png') }}");
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 60%;
+            margin: 2em auto;
+            background: #f9f9f9;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        textarea, input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: block;
+        }
+        textarea {
+            border: 1px solid #ddd;
+            min-height: 150px;
+        }
+        input[type="submit"] {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #004494;
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+        h2 {
+            color: #0056b3;
+        }
+        p {
+            background: #e9ecef;
+            padding: 10px;
+            border-left: 4px solid #0056b3;
+            margin-top: 15px;
+        }
+    </style>
+    <script>
+        function handleSubmit() {
+            // Clear the form and responses
+            document.getElementById("queryForm").reset();
+            // Reload the page to clear previous responses
+            window.location.reload();
+            // Prevent default form submission behavior
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the  Blockchain Assistant!</h1>
+        <form method="post">
+            <textarea name="query" placeholder="Enter your query or paste a whitepaper text to summarize"></textarea>
+            <input type="submit" value="Submit">
+        </form>
+        {% if response %}
+            <h2>Response:</h2>
+            <p>{{ response }}</p>
+        {% endif %}
+        {% if summary_response %}
+            <h2>Summary:</h2>
+            <p>{{ summary_response }}</p>
+        {% endif %}
+        {% if warning %}
+            <h2>Warning:</h2>
+            <p>{{ warning }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
