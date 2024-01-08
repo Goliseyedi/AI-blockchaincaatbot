@@ -7,7 +7,6 @@ import uuid
 import time
 from datetime import datetime
 
-
 def is_crypto_related(query):
     
     crypto_keywords = [
@@ -127,34 +126,29 @@ def chatbot(query):
     normalized_query = query.lower().strip()
     definition = lookup_term(normalized_query)
     return definition
+
 def summarize_whitepaper(whitepaper_text):
     api_key = os.environ.get('OPENAI_API_KEY')
     if not api_key:
         raise ValueError("The OPENAI_API_KEY environment variable is not set.")
 
     openai.api_key = api_key
-
-    # Summarize the entire text
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt="Summarize this text in one sentence:\n\n" + whitepaper_text,
         temperature=0.3,
-        max_tokens=60,  # Limit the number of tokens for the summary
+        max_tokens=60,  
         top_p=1.0,
         frequency_penalty=0.0,
         presence_penalty=0.0
     )
     summary = response.choices[0].text.strip()
 
-    # Truncate the summary to a specific length
-    desired_length = 80  # Set your desired summary length
+    desired_length = 80 
     if len(summary) > desired_length:
         summary = summary[:desired_length] + '...'
 
     return summary
-
-
-
 
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
@@ -162,32 +156,31 @@ def index():
     response = None
     warning = None
     summary_response = None
-
     if request.method == 'POST':
         user_input = request.form['query']
-
-        # First, check in the glossary
-        glossary_response = lookup_term(user_input)
+        if "summarize" in user_input.lower():
+            summary_response = summarize_whitepaper(user_input)
+            return render_template('index.html', summary_response=summary_response)
+        if is_financial_advice(user_input) and not is_tech_explanation_query(user_input):
+            warning = "Please note that the information provided here is not financial advice."
+        elif is_crypto_related(user_input) or is_tech_explanation_query(user_input):
+            response = get_openai_response(user_input)
+        else:
+            warning = "This query does not appear to be related to cryptocurrency or blockchain."
+        glossary_response = chatbot(user_input)
         if glossary_response != "Term not found in the glossary.":
             response = glossary_response
-        else:
-            # Check if the user wants to summarize text
-            if "summarize" in user_input.lower():
-                text_to_summarize = user_input.split("summarize", 1)[1].strip()
-                summary_response = summarize_whitepaper(text_to_summarize)
-                return render_template('index.html', summary_response=summary_response)
-
-            # For other queries, check if it's financial advice and not related to crypto or tech explanation
-            if is_financial_advice(user_input) and not (is_crypto_related(user_input) or is_tech_explanation_query(user_input)):
-                warning = "Please note that the information provided here is not financial advice."
-                response = get_openai_response(user_input)
-            elif is_crypto_related(user_input) or is_tech_explanation_query(user_input):
-                response = get_openai_response(user_input)
+        elif is_financial_advice(user_input):
+            warning = "Please note that the information provided here is not financial advice."
+        elif is_crypto_related(user_input):
+            if is_tech_explanation_query(user_input):
+                tech_context = "Please explain the technology behind this blockchain project: "
+                response = get_openai_response(user_input, tech_context)
             else:
-                warning = "This query does not appear to be related to cryptocurrency or blockchain."
-
-    return render_template('index.html', response=response, warning=warning, summary_response=summary_response)
-
+                response = get_openai_response(user_input)
+        else:
+            warning = "This query does not appear to be related to cryptocurrency or blockchain."
+    return render_template('index.html', response=response, warning=warning, summary_response=summary_response)  
 
 @app.route('/summarize', methods=['GET', 'POST'])
 def summarize():
@@ -220,8 +213,5 @@ def feedback():
             return "An error occurred: " + str(e)
     return render_template('feedback_form.html')
 
-
 if __name__ == "__main__":
     app.run(debug=True)
-
-
